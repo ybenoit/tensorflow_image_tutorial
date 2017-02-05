@@ -24,7 +24,7 @@ class InferenceOpWithConv:
 
         pool = self.add_max_pool_op(x=conv, name_scope="pool")
 
-        # reshape the output from the third convolution for the fully connected layer
+        # reshape the output from the convolution for the fully connected layer
         shape = pool.get_shape().as_list()
         pool_reshaped = tf.reshape(pool, shape=[-1, shape[1] * shape[2] * shape[3]])
 
