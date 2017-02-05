@@ -20,7 +20,7 @@ from tensorflow_image_tutorial.operation import InputOp, InferenceOpWithFiveHidd
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string("data_dir",
-                           os.path.join(os.path.dirname(__file__), "../data/NotMNIST"),
+                           os.path.join(os.path.dirname(__file__), "../../data/NotMNIST"),
                            """Directory containing the input data""")
 tf.app.flags.DEFINE_string('train_dir', '/tmp/not_mnist/not_mnist_train/five_hidden',
                            """Directory where to write event logs and checkpoint.""")
