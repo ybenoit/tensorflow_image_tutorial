@@ -16,7 +16,7 @@ class LossOp:
 
         with tf.name_scope(self.name_scope):
             labels = tf.cast(labels, tf.int64)
-            cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits, labels)
+            cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=labels, logits=logits)
             cross_entropy_mean = tf.reduce_mean(cross_entropy, name=self.name_scope)
 
             tf.summary.scalar(self.name_scope, cross_entropy_mean)
