@@ -9,7 +9,7 @@ with tf.name_scope('counter'):
 two_op = tf.constant(2, name="const")
 
 # Operations to perform in order to increment the variable value
-new_value = tf.mul(counter, two_op)
+new_value = tf.multiply(counter, two_op)
 update = tf.assign(counter, new_value)
 
 merged = tf.summary.merge_all()
@@ -27,15 +27,15 @@ with tf.Session() as sess:
     for i in range(5):
         summary, _ = sess.run([merged, update])
         summary_writer.add_summary(summary, i)
-        print sess.run(counter)
+        print(sess.run(counter))
 
 input1 = tf.placeholder(tf.float32)
 input2 = tf.placeholder(tf.float32)
 
 # Multiplication operation
-output = tf.mul(input1, input2)
+output = tf.multiply(input1, input2)
 
 # Graph execution, we need to feed the placeholders
 with tf.Session() as sess:
     result = sess.run(output, feed_dict={input1: [7.], input2: [2.]})
-    print result
+    print(result)
