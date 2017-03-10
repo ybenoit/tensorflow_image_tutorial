@@ -6,10 +6,12 @@ The code structure aims at showing that it is easy to modify the structure of a 
 The examples run with TensorFlow 1.0, with the Python API.
 
 ## Run the code
-Go in tensorflow_image_tutorial/train directory
-Choose the model you want and run the corresponding Python file
+```
+cd tensorflow_image_tutorial/train directory
+```
+Choose the model you want and run the corresponding Python file.
 
 ## See results in TensorBoard
-```
+````
 tensorboard --logdir="/tmp/not_mnist/not_mnist_logs"
 ```
