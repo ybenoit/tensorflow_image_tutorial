@@ -20,9 +20,10 @@ class InferenceOp:
             weights = tf.Variable(tf.zeros([self.num_pixels, self.num_classes]))
             biases = tf.Variable(tf.zeros([self.num_classes]))
 
-            softmax = tf.nn.softmax(tf.matmul(x, weights) + biases)
+            logits = tf.matmul(x, weights) + biases
+            softmax = tf.nn.softmax(logits)
 
         # Softmax values histogram
         tf.summary.histogram(softmax.op.name + '/activations', softmax)
 
-        return softmax
+        return softmax, logits

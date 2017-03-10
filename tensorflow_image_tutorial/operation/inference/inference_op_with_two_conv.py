@@ -42,12 +42,12 @@ class InferenceOpWithTwoConv:
                                                num_neurons_current_layer=self.num_neurons_in_first_dense_hidden_layer,
                                                name_scope="dense")
 
-        softmax = self.add_softmax_op(x=dense,
-                                      num_neurons_previous_layer=self.num_neurons_in_first_dense_hidden_layer,
-                                      num_classes=self.num_classes,
-                                      name_scope="softmax")
+        softmax, logits = self.add_softmax_op(x=dense,
+                                              num_neurons_previous_layer=self.num_neurons_in_first_dense_hidden_layer,
+                                              num_classes=self.num_classes,
+                                              name_scope="softmax")
 
-        return softmax
+        return softmax, logits
 
     @staticmethod
     def add_softmax_op(x, num_neurons_previous_layer, num_classes, name_scope="softmax"):
@@ -66,11 +66,12 @@ class InferenceOpWithTwoConv:
             weights = tf.Variable(tf.zeros([num_neurons_previous_layer, num_classes]))
             biases = tf.Variable(tf.zeros([num_classes]))
 
-            softmax = tf.nn.softmax(tf.matmul(x, weights) + biases)
+            logits = tf.matmul(x, weights) + biases
+            softmax = tf.nn.softmax(logits)
 
             tf.summary.histogram(softmax.op.name + '/activations', x)
 
-            return softmax
+            return softmax, logits
 
     @staticmethod
     def add_dense_hidden_layer_op(x, num_neurons_previous_layer, num_neurons_current_layer, name_scope):

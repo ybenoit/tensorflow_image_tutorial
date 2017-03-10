@@ -76,7 +76,7 @@ def main():
         """
 
         # Build a Graph that computes the logits predictions from the inference model.
-        softmax = InferenceOpWithTwoConv(
+        softmax, logits = InferenceOpWithTwoConv(
             num_pixels=Constant.NUM_PIXELS,
             num_classes=Constant.NUM_CLASSES,
             num_neurons_in_first_dense_hidden_layer=64,
@@ -85,7 +85,7 @@ def main():
         ).add_ops(x_reshaped)
 
         # Calculate loss.
-        loss = LossOp(name_scope="cross_entropy").add_op(softmax, y)
+        loss = LossOp(name_scope="cross_entropy").add_op(logits, y)
 
         # Build a Graph that trains the model with one batch of examples and updates the model parameters.
         train_op = TrainingOp(learning_rate=FLAGS.learning_rate, name_scope="train").add_op(loss, global_step)
