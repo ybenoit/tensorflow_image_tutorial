@@ -5,9 +5,15 @@ The code structure aims at showing that it is easy to modify the structure of a 
 
 The examples run with TensorFlow 1.0, with the Python API.
 
-## Run the code
+## Download the data
 ```
-cd tensorflow_image_tutorial/train directory
+bash script/launch_data_extraction.sh
+```
+
+## Run the code
+Example for the softmax neural network
+```
+bash script/launch_softmax_training.sh
 ```
 Choose the model you want and run the corresponding Python file.
 
